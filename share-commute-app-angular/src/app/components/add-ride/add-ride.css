@@ -1,0 +1,18 @@
+.tooltip-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

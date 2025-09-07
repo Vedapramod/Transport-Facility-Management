@@ -1,0 +1,28 @@
+<h2>Pick a Ride</h2>
+
+<div>
+  <label for="employeeId">Employee ID</label>
+  <input id="employeeId" [value]="employeeId" readonly />
+</div>
+
+@if (popupMessage) {
+<div class="popup-message">
+  {{ popupMessage }}
+</div>
+} @if (availableRides.length > 0) {
+<ul>
+  @for (ride of availableRides; track $index) {
+  <li>
+    <div><strong>Vehicle:</strong> {{ ride.vehicleType }} - {{ ride.vehicleNo }}</div>
+    <div><strong>Vacant Seats:</strong> {{ ride.vacantSeats }}</div>
+    <div><strong>Time:</strong> {{ ride.time | date : 'short' }}</div>
+    <div>
+      <strong>From:</strong> {{ ride.pickupPoint }} <strong>To:</strong> {{ ride.destination }}
+    </div>
+    <button (click)="pickRide(ride)">Book this Ride</button>
+  </li>
+  }
+</ul>
+} @else {
+<div>No rides available at the moment.</div>
+}
