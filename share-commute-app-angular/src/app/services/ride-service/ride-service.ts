@@ -1,9 +1,10 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Rides } from '../../interfaces/add-ride';
+import { DUMMY_RIDES } from '../../data/dummy-rides';
 
 @Injectable({ providedIn: 'root' })
 export class RideService {
-  readonly rides = signal<Rides[]>([]);
+  readonly rides = signal<Rides[]>(DUMMY_RIDES);
   readonly addedRides = signal<Set<string>>(new Set()); // Using Set to store unique employee IDs (No duplicates allowed)
   readonly bookedRides = signal<Set<string>>(new Set());
   readonly currentEmployeeId = signal<string>('');

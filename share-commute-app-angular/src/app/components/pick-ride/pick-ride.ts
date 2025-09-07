@@ -2,18 +2,20 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RideService } from '../../services/ride-service/ride-service';
 import { Rides } from '../../interfaces/add-ride';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-pick-ride',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './pick-ride.html',
   styleUrl: './pick-ride.css',
 })
 export class PickRide implements OnInit {
   employeeId = '';
   availableRides: Rides[] = [];
-  selectedRideId: number | null = null; // Or another unique identifier if available
-  popupMessage = '';
+  filteredRides: Rides[] = [];
+  selectedRideId: number | null = null;
+  selectedVehicleType = '';
 
   private rideService = inject(RideService);
 
@@ -23,18 +25,28 @@ export class PickRide implements OnInit {
   }
 
   loadAvailableRides() {
-    // Initially, load all rides (filtering logic can be added later)
     this.availableRides = this.rideService.getAvailableRides(this.employeeId);
+    this.applyFilter(); // Apply filter immediately after loading rides
+  }
+
+  applyFilter() {
+    if (this.selectedVehicleType) {
+      this.filteredRides = this.availableRides.filter(
+        (ride) => ride.vehicleType === this.selectedVehicleType
+      );
+    } else {
+      this.filteredRides = [...this.availableRides];
+    }
   }
 
   pickRide(ride: Rides) {
     if (this.rideService.hasBookedRide(this.employeeId)) {
-      this.popupMessage = 'You have already booked a ride today.';
+      alert('You have already booked a ride today.');
       return;
     }
 
     this.rideService.pickRide(this.employeeId, ride);
-    this.popupMessage = 'Ride booked successfully!';
+    alert('Ride booked successfully!');
     this.loadAvailableRides();
   }
 }

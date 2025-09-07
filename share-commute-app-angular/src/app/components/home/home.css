@@ -1,17 +1,112 @@
-.container {
+.page-container {
+  height: 90%;
+  box-sizing: border-box;
+}
+
+.heading {
+  padding: 0 1rem;
+}
+
+h2 {
+  margin: 0.5rem 0;
+  padding-bottom: 0.5rem;
   text-align: center;
-  margin-top: 50px;
+  border-bottom: 1px solid #ccc;
 }
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Reusing the consistent form-group styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #888;
+  box-shadow: 0 0 0 2px rgba(100, 100, 255, 0.2);
+}
+
 .buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
   margin-top: 20px;
 }
-button {
-  margin: 0 10px;
-  padding: 10px 20px;
+
+.buttons button {
+  flex: 1;
+  background-color: #e0e0e0;
+  color: #000;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
 }
-.popup {
+
+.buttons button:hover,
+.buttons button:focus,
+.buttons button:active {
+  background-color: #424242;
+  color: #fff;
+}
+
+/* Popup message styling, matching Pick a Ride */
+.popup-message {
+  position: relative;
   margin-top: 20px;
-  padding: 15px;
-  border: 1px solid #333;
-  display: inline-block;
+  padding: 1rem 2.5rem 1rem 1rem; /* padding-right for the close button */
+  background-color: #fbe9e7;
+  border: 1px solid #f44336;
+  border-radius: 6px;
+  color: #d32f2f;
+  font-weight: 500;
+  text-align: left;
+}
+
+.popup-message .close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: #d32f2f;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.popup-message .close-btn:hover {
+  background-color: rgba(244, 67, 54, 0.1); /* subtle hover effect */
+  color: #9a1b1b;
 }

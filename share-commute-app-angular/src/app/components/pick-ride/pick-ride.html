@@ -1,28 +1,76 @@
-<h2>Pick a Ride</h2>
-
-<div>
-  <label for="employeeId">Employee ID</label>
-  <input id="employeeId" [value]="employeeId" readonly />
+<div class="heading">
+  <h2>Pick a Ride</h2>
 </div>
 
-@if (popupMessage) {
-<div class="popup-message">
-  {{ popupMessage }}
-</div>
-} @if (availableRides.length > 0) {
-<ul>
-  @for (ride of availableRides; track $index) {
-  <li>
-    <div><strong>Vehicle:</strong> {{ ride.vehicleType }} - {{ ride.vehicleNo }}</div>
-    <div><strong>Vacant Seats:</strong> {{ ride.vacantSeats }}</div>
-    <div><strong>Time:</strong> {{ ride.time | date : 'short' }}</div>
-    <div>
-      <strong>From:</strong> {{ ride.pickupPoint }} <strong>To:</strong> {{ ride.destination }}
+<div class="container">
+  <div class="form-group">
+    <label for="employeeId">Employee ID</label>
+    <input id="employeeId" [value]="employeeId" readonly />
+  </div>
+
+  <div class="form-group">
+    <label for="vehicleTypeFilter">Filter by vehicle type</label>
+    <select id="vehicleTypeFilter" [(ngModel)]="selectedVehicleType" (change)="applyFilter()">
+      <option value="">All</option>
+      <option value="Bike">Bike</option>
+      <option value="Car">Car</option>
+    </select>
+  </div>
+
+  <div class="ride-list-container">
+    @if (filteredRides.length > 0) {
+    <div class="ride-list">
+      @for (ride of filteredRides; track $index) {
+      <div class="ride-card">
+        <div class="ride-details">
+          <div class="ride-route">
+            <div class="location-point">
+              <div class="icon from-icon"></div>
+              <div class="location-text">{{ ride.pickupPoint }}</div>
+            </div>
+
+            <div class="route-line"></div>
+
+            <div class="location-point">
+              <div class="icon to-icon"></div>
+              <div class="location-text">{{ ride.destination }}</div>
+            </div>
+          </div>
+
+          <div class="ride-time">
+            <div class="time-label">Scheduled at</div>
+            <div class="time-value">{{ ride.time | date : 'shortTime' }}</div>
+          </div>
+        </div>
+
+        <div class="ride-info">
+          <div class="vehicle-info">
+            <div class="vehicle-icon">
+              @if (ride.vehicleType === 'Car') {
+              <i class="fas fa-car"></i>
+              } @else if (ride.vehicleType === 'Bike') {
+              <i class="fas fa-motorcycle"></i>
+              }
+            </div>
+            <div class="vehicle-number">{{ ride.vehicleNo }}</div>
+          </div>
+          <div class="seat-info">
+            <div class="vacant-seats">
+              <i class="fa-solid fa-user"></i>
+              <span class="seat-count">{{ ride.vacantSeats }}</span>
+            </div>
+            <div class="seat-label">Remaining Seats</div>
+          </div>
+
+          <div class="action">
+            <button (click)="pickRide(ride)">Book Ride</button>
+          </div>
+        </div>
+      </div>
+      }
     </div>
-    <button (click)="pickRide(ride)">Book this Ride</button>
-  </li>
-  }
-</ul>
-} @else {
-<div>No rides available at the moment.</div>
-}
+    } @else {
+    <div>No rides available at the moment.</div>
+    }
+  </div>
+</div>

@@ -1,19 +1,27 @@
-<div class="container">
-  <h1>Welcome to Share Commute</h1>
-
-  <label for="employeeId">Enter Employee ID:</label>
-  <input type="text" [(ngModel)]="employeeId" id="employeeId" placeholder="E.g., E101" />
-
-  <div class="buttons">
-    <button (click)="goToAddRide()">Add Ride</button>
-    <button (click)="goToPickRide()">Pick Ride</button>
+<div class="page-container">
+  <div class="heading">
+    <h2>Welcome to Share Commute</h2>
   </div>
 
-  <!-- Popup message -->
-  @if (popupMessage) {
-  <div class="popup">
-    {{ popupMessage }}
-    <button (click)="popupMessage = ''">Close</button>
+  <div class="container">
+    <div class="form-group">
+      <label for="employeeId">Enter Employee ID:</label>
+      <input type="text" [(ngModel)]="employeeId" id="employeeId" placeholder="E.g., E101" />
+    </div>
+
+    <div class="buttons">
+      <button (click)="goToAddRide()">Add Ride</button>
+      <button (click)="goToPickRide()">Pick Ride</button>
+    </div>
+
+    <!-- Popup message -->
+    @if (popupMessage) {
+    <div class="popup-message">
+      {{ popupMessage }}
+      <button class="close-btn" (click)="popupMessage = ''" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    }
   </div>
-  }
 </div>

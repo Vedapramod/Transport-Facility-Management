@@ -49,6 +49,33 @@ export class AddRide implements OnInit {
       destination: ['', Validators.required],
     });
 
+    this.rideForm.get('vehicleNo')?.valueChanges.subscribe((value) => {
+      if (!value) return;
+      const upperValue = value.toUpperCase();
+      if (value !== upperValue) {
+        this.rideForm.get('vehicleNo')?.setValue(upperValue, { emitEvent: false });
+      }
+    });
+
+    const capitalizeWords = (str = '') =>
+      str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+
+    this.rideForm.get('pickupPoint')?.valueChanges.subscribe((value) => {
+      if (!value) return;
+      const capitalized = capitalizeWords(value);
+      if (value !== capitalized) {
+        this.rideForm.get('pickupPoint')?.setValue(capitalized, { emitEvent: false });
+      }
+    });
+
+    this.rideForm.get('destination')?.valueChanges.subscribe((value) => {
+      if (!value) return;
+      const capitalized = capitalizeWords(value);
+      if (value !== capitalized) {
+        this.rideForm.get('destination')?.setValue(capitalized, { emitEvent: false });
+      }
+    });
+
     // Subscribe to time changes for live validation
     this.rideForm.get('time')?.valueChanges.subscribe((value) => {
       if (!value) return;
