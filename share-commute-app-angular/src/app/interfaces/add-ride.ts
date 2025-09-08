@@ -3,7 +3,7 @@ export interface Rides {
   vehicleType: 'Bike' | 'Car';
   vehicleNo: string;
   vacantSeats: number;
-  time: Date;
+  time: string;
   pickupPoint: string;
   destination: string;
 }

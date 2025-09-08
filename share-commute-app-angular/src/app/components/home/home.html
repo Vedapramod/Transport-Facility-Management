@@ -6,7 +6,17 @@
   <div class="container">
     <div class="form-group">
       <label for="employeeId">Enter Employee ID:</label>
-      <input type="text" [(ngModel)]="employeeId" id="employeeId" placeholder="E.g., E101" />
+      <input
+        type="text"
+        [(ngModel)]="employeeId"
+        (input)="onEmployeeIdInput($event)"
+        (keypress)="allowOnlyAlphanumeric($event)"
+        (paste)="onPaste($event)"
+        [class.input-error]="showError"
+        id="employeeId"
+        maxlength="7"
+        placeholder="E.g., E101"
+      />
     </div>
 
     <div class="buttons">

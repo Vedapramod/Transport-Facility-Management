@@ -19,19 +19,46 @@
 
     <div class="form-group">
       <label for="vehicleNo">Vehicle number</label>
-      <input id="vehicleNo" formControlName="vehicleNo" />
+      <input
+        id="vehicleNo"
+        placeholder="E.g., IN1234"
+        formControlName="vehicleNo"
+        (input)="onVehicleNoInput($event); removeConsecutiveSpaces('vehicleNo')"
+        (blur)="markAsTouched('vehicleNo')"
+        [class.input-error]="
+          rideForm.get('vehicleNo')?.touched && rideForm.get('vehicleNo')?.invalid
+        "
+      />
+      @if (rideForm.get('vehicleNo')?.touched && rideForm.get('vehicleNo')?.hasError('required')) {
+      <div class="tooltip-message">
+        <i class="fa-solid fa-triangle-exclamation"></i> Vehicle number is required.
+      </div>
+      } @if (rideForm.get('vehicleNo')?.errors?.['minlength']) {
+      <div class="tooltip-message">
+        <i class="fa-solid fa-triangle-exclamation"></i> Vehicle number must be at least 4
+        characters.
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="vacantSeats">Vacant seats</label>
-      <input id="vacantSeats" type="number" formControlName="vacantSeats" min="1" />
+      <input
+        id="vacantSeats"
+        type="number"
+        formControlName="vacantSeats"
+        min="1"
+        max="7"
+        (keypress)="allowOnlyDigits($event)"
+        (blur)="sanitizeVacantSeats()"
+      />
     </div>
 
     <div class="form-group">
       <label for="time">Time</label>
       <input
         id="time"
-        type="datetime-local"
+        type="time"
         formControlName="time"
         [attr.min]="minTime"
         [attr.max]="maxTime"
@@ -45,14 +72,61 @@
 
     <div class="form-group">
       <label for="pickupPoint">Pickup point</label>
-      <input id="pickupPoint" formControlName="pickupPoint" />
+      <input
+        id="pickupPoint"
+        placeholder="Enter starting location"
+        formControlName="pickupPoint"
+        (input)="onLocationInput($event, 'pickupPoint'); removeConsecutiveSpaces('pickupPoint')"
+        (blur)="markAsTouched('pickupPoint')"
+        [class.input-error]="
+          rideForm.get('pickupPoint')?.touched && rideForm.get('pickupPoint')?.invalid
+        "
+      />
+      @if (rideForm.get('pickupPoint')?.touched &&
+      rideForm.get('pickupPoint')?.hasError('required')) {
+      <div class="tooltip-message">
+        <i class="fa-solid fa-triangle-exclamation"></i> Pickup point is required.
+      </div>
+      }@if (rideForm.get('pickupPoint')?.errors?.['minlength']) {
+      <div class="tooltip-message">
+        <i class="fa-solid fa-triangle-exclamation"></i> Pickup point must be at least 5 characters.
+      </div>
+      }
     </div>
 
     <div class="form-group">
       <label for="destination">Destination</label>
-      <input id="destination" formControlName="destination" />
+      <input
+        id="destination"
+        placeholder="Enter drop-off location"
+        formControlName="destination"
+        (input)="onLocationInput($event, 'destination'); removeConsecutiveSpaces('destination')"
+        (blur)="markAsTouched('destination')"
+        [class.input-error]="
+          rideForm.get('destination')?.touched && rideForm.get('destination')?.invalid
+        "
+      />
+      @if (rideForm.get('destination')?.touched &&
+      rideForm.get('destination')?.hasError('required')) {
+      <div class="tooltip-message">
+        <i class="fa-solid fa-triangle-exclamation"></i> Destination is required.
+      </div>
+      } @if (rideForm.get('destination')?.errors?.['minlength']) {
+      <div class="tooltip-message">
+        <i class="fa-solid fa-triangle-exclamation"></i> Destination must be at least 5 characters.
+      </div>
+      }@if (rideForm.errors?.['sameLocations'] && (rideForm.get('pickupPoint')?.touched ||
+      rideForm.get('destination')?.touched)) {
+      <div class="tooltip-message">
+        <i class="fa-solid fa-triangle-exclamation"></i> Pickup Point and Destination cannot be the
+        same.
+      </div>
+      }
     </div>
 
-    <button type="submit">Add ride</button>
+    <div class="button-group">
+      <button type="submit" [disabled]="rideForm.invalid">Add Ride</button>
+      <button type="button" (click)="cancel()">Cancel</button>
+    </div>
   </form>
 </div>

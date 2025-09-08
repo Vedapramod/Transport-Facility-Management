@@ -48,6 +48,11 @@ h2 {
   box-shadow: 0 0 0 2px rgba(100, 100, 255, 0.2);
 }
 
+.input-error {
+  border: 1px solid #f44336 !important;
+  box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2) !important;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;

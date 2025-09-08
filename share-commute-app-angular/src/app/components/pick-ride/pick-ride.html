@@ -39,7 +39,7 @@
 
           <div class="ride-time">
             <div class="time-label">Scheduled at</div>
-            <div class="time-value">{{ ride.time | date : 'shortTime' }}</div>
+            <div class="time-value">{{ ride.time | timeFormat }}</div>
           </div>
         </div>
 
@@ -63,7 +63,9 @@
           </div>
 
           <div class="action">
-            <button (click)="pickRide(ride)">Book Ride</button>
+            <button (click)="pickRide(ride)" [class.selected]="selectedRide === ride">
+              {{ selectedRide === ride ? 'Selected' : 'Book Ride' }}
+            </button>
           </div>
         </div>
       </div>
@@ -72,5 +74,9 @@
     } @else {
     <div>No rides available at the moment.</div>
     }
+  </div>
+  <div class="button-group">
+    <button type="submit" [disabled]="!selectedRide" (click)="confirmBooking()">Confirm</button>
+    <button type="button" (click)="cancelBooking()">Cancel</button>
   </div>
 </div>

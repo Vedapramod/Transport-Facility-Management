@@ -1,0 +1,119 @@
+[
+  {
+    "employeeId": "E001",
+    "vehicleType": "Car",
+    "vehicleNo": "KA01AB1234",
+    "vacantSeats": 3,
+    "time": "10:00",
+    "pickupPoint": "Main Office",
+    "destination": "Branch Office"
+  },
+  {
+    "employeeId": "E002",
+    "vehicleType": "Bike",
+    "vehicleNo": "KA02XY5678",
+    "vacantSeats": 1,
+    "time": "11:00",
+    "pickupPoint": "Bus Stand",
+    "destination": "Headquarters"
+  },
+  {
+    "employeeId": "E003",
+    "vehicleType": "Car",
+    "vehicleNo": "KA03CD7890",
+    "vacantSeats": 2,
+    "time": "12:00",
+    "pickupPoint": "Office 2",
+    "destination": "Warehouse"
+  },
+  {
+    "employeeId": "E004",
+    "vehicleType": "Bike",
+    "vehicleNo": "KA04EF4567",
+    "vacantSeats": 4,
+    "time": "13:00",
+    "pickupPoint": "Metro Station",
+    "destination": "Corporate Office"
+  },
+  {
+    "employeeId": "E005",
+    "vehicleType": "Car",
+    "vehicleNo": "KA05GH2345",
+    "vacantSeats": 2,
+    "time": "14:00",
+    "pickupPoint": "Tech Park",
+    "destination": "Admin Office"
+  },
+  {
+    "employeeId": "E006",
+    "vehicleType": "Bike",
+    "vehicleNo": "KA06IJ6789",
+    "vacantSeats": 1,
+    "time": "15:00",
+    "pickupPoint": "Railway Station",
+    "destination": "Branch Office"
+  },
+  {
+    "employeeId": "E007",
+    "vehicleType": "Car",
+    "vehicleNo": "KA07KL8901",
+    "vacantSeats": 3,
+    "time": "16:00",
+    "pickupPoint": "Office 3",
+    "destination": "Main Office"
+  },
+  {
+    "employeeId": "E008",
+    "vehicleType": "Bike",
+    "vehicleNo": "KA08MN3456",
+    "vacantSeats": 2,
+    "time": "17:00",
+    "pickupPoint": "Bus Stand",
+    "destination": "Airport"
+  },
+  {
+    "employeeId": "E009",
+    "vehicleType": "Car",
+    "vehicleNo": "KA09OP1234",
+    "vacantSeats": 5,
+    "time": "18:00",
+    "pickupPoint": "Warehouse",
+    "destination": "Tech Park"
+  },
+  {
+    "employeeId": "E010",
+    "vehicleType": "Bike",
+    "vehicleNo": "KA10QR5678",
+    "vacantSeats": 3,
+    "time": "19:00",
+    "pickupPoint": "Airport",
+    "destination": "Main Office"
+  },
+  {
+    "employeeId": "E011",
+    "vehicleType": "Car",
+    "vehicleNo": "KA11ST9012",
+    "vacantSeats": 2,
+    "time": "20:00",
+    "pickupPoint": "Corporate Office",
+    "destination": "Office 2"
+  },
+  {
+    "employeeId": "E012",
+    "vehicleType": "Bike",
+    "vehicleNo": "KA12UV3456",
+    "vacantSeats": 1,
+    "time": "21:00",
+    "pickupPoint": "Branch Office",
+    "destination": "Metro Station"
+  },
+  {
+    "employeeId": "E013",
+    "vehicleType": "Car",
+    "vehicleNo": "KA13WX6789",
+    "vacantSeats": 4,
+    "time": "22:00",
+    "pickupPoint": "Admin Office",
+    "destination": "Headquarters"
+  }
+]
